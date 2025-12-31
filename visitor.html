@@ -1,37 +1,70 @@
 <!DOCTYPE html>
 <html>
-<body>
+<head>
+<title>Visitor Feedback</title>
 
-<h2>Visitor Feedback</h2>
-
-<input placeholder="Your Name"><br><br>
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Visitor Feedback</h2>
-
-<input id="name" placeholder="Your Name"><br><br>
-<textarea id="feedback" placeholder="Write your feedback"></textarea><br><br>
-
-<button onclick="submitFeedback()">Submit</button>
-
-<script>
-function submitFeedback() {
-  var data = {
-    name: document.getElementById("name").value,
-    feedback: document.getElementById("feedback").value
-  };
-
-  fetch("PASTE_WEB_APP_URL_HERE", {
-    method: "POST",
-    body: JSON.stringify(data)
-  })
-  .then(response => response.json())
-  .then(data => alert("Feedback sent successfully"))
-  .catch(error => alert("Error sending feedback"));
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f5e9;
+    margin: 0;
+    padding: 20px;
 }
-</script>
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #2e7d32;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: #43a047;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2e7d32;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>📝 Visitor Feedback</h2>
+
+<form action="PASTE_GOOGLE_SCRIPT_URL_HERE" method="post">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <textarea name="problem" placeholder="Describe the problem in park" required></textarea>
+    <button type="submit">Submit Feedback</button>
+</form>
+
+</div>
 
 </body>
 </html>
+
