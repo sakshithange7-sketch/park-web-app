@@ -1,13 +1,72 @@
 <!DOCTYPE html>
 <html>
+<head>
+<title>Smart Park Web App</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #2193b0, #6dd5ed);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    width: 350px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+p {
+    color: #555;
+    margin-bottom: 25px;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    color: white;
+}
+
+.owner {
+    background-color: #27ae60;
+}
+
+.visitor {
+    background-color: #2980b9;
+}
+
+a:hover {
+    opacity: 0.85;
+}
+</style>
+</head>
+
 <body>
 
-<h2>Smart Park Web App</h2>
+<div class="card">
+    <h1>🌳 Smart Park</h1>
+    <p>Select your role</p>
 
-<p>Select user:</p>
-
-<a href="owner.html">Park Owner</a><br><br>
-<a href="visitor.html">Visitor</a>
+    <a class="owner" href="owner.html">👨‍💼 Park Owner</a>
+    <a class="visitor" href="visitor.html">🧑‍🤝‍🧑 Visitor</a>
+</div>
 
 </body>
 </html>
