@@ -5,61 +5,70 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background-color: #e8f5e9;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #a8e063, #56ab2f);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.container {
-    max-width: 500px;
-    margin: auto;
+.card {
     background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 h2 {
     text-align: center;
     color: #2e7d32;
+    margin-bottom: 20px;
 }
 
 input, textarea {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 14px;
 }
 
+textarea {
+    resize: none;
+    height: 80px;
+}
+
 button {
-    margin-top: 15px;
     width: 100%;
+    margin-top: 15px;
     padding: 10px;
-    background-color: #43a047;
+    background-color: #2e7d32;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #2e7d32;
+    background-color: #1b5e20;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="card">
 <h2>📝 Visitor Feedback</h2>
 
 <form action="PASTE_GOOGLE_SCRIPT_URL_HERE" method="post">
     <input type="text" name="name" placeholder="Your Name" required>
-    <textarea name="problem" placeholder="Describe the problem in park" required></textarea>
+    <textarea name="problem" placeholder="Describe the problem in the park" required></textarea>
     <button type="submit">Submit Feedback</button>
 </form>
 
@@ -67,4 +76,3 @@ button:hover {
 
 </body>
 </html>
-
