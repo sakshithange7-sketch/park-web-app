@@ -5,11 +5,6 @@
 <h2>Visitor Feedback</h2>
 
 <input placeholder="Your Name"><br><br>
-<textarea placeholder="Problem in park"></textarea><br><br>
-<button onclick="alert('Feedback sent')">Submit</button>
-
-</body>
-</html>
 <!DOCTYPE html>
 <html>
 <body>
@@ -17,26 +12,24 @@
 <h2>Visitor Feedback</h2>
 
 <input id="name" placeholder="Your Name"><br><br>
-<textarea id="issue" placeholder="Problem in park"></textarea><br><br>
+<textarea id="feedback" placeholder="Write your feedback"></textarea><br><br>
 
 <button onclick="submitFeedback()">Submit</button>
 
 <script>
 function submitFeedback() {
-  var name = document.getElementById("name").value;
-  var issue = document.getElementById("issue").value;
-
   var data = {
-    name: name,
-    issue: issue
+    name: document.getElementById("name").value,
+    feedback: document.getElementById("feedback").value
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbwySggxttRN9tF8Zl25ieeks9MfvMqZmgxw_QczvMVOV-ZaX5ZwG4WmbKwXUCaatJt0/exec", {
+  fetch("PASTE_WEB_APP_URL_HERE", {
     method: "POST",
     body: JSON.stringify(data)
   })
-  .then(() => alert("Feedback sent successfully"))
-  .catch(() => alert("Error sending feedback"));
+  .then(response => response.json())
+  .then(data => alert("Feedback sent successfully"))
+  .catch(error => alert("Error sending feedback"));
 }
 </script>
 
