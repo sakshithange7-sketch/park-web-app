@@ -1,23 +1,107 @@
 <!DOCTYPE html>
 <html>
+<head>
+<title>Park Owner Dashboard</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.section {
+    margin-top: 25px;
+}
+
+button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+.on {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.off {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.status {
+    font-size: 18px;
+    color: #2980b9;
+    margin-top: 10px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #3498db;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #2980b9;
+}
+</style>
+</head>
+
 <body>
 
-<h2>Owner Dashboard</h2>
+<div class="container">
 
-<button onclick="alert('Motor ON')">Motor ON</button>
-<button onclick="alert('Motor OFF')">Motor OFF</button>
+<h2>🌳 Park Owner Dashboard</h2>
 
-<p>Soil Moisture: --</p>
+<div class="section">
+<h3>Motor Control</h3>
+<button class="on" onclick="alert('Motor ON')">Motor ON</button>
+<button class="off" onclick="alert('Motor OFF')">Motor OFF</button>
+</div>
 
-<hr>
+<div class="section">
+<h3>Soil Moisture</h3>
+<p class="status">Current Level: --%</p>
+</div>
 
+<div class="section">
 <h3>Visitor Feedback</h3>
+<p>Check complaints submitted by visitors:</p>
 
-<p>Click below to view visitor feedback submitted by users:</p>
-
-<a href="https://docs.google.com/spreadsheets/d/1Stnsxogc7bmM44QrHw8htkk5ErazZIC1hnjHrzmnaXQ/edit?usp=sharing"_blank">
-  View Visitor Feedback Sheet
+<a href="PASTE_GOOGLE_SHEET_LINK_HERE" target="_blank">
+View Feedback Sheet
 </a>
+</div>
+
+</div>
 
 </body>
 </html>
+
