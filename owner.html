@@ -1,47 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Park Owner Dashboard</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #d4fc79, #96e6a1);
       margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
+      background: linear-gradient(120deg, #e0f7fa, #e8f5e9);
     }
 
-    .dashboard {
-      background: #ffffff;
-      padding: 30px;
+    /* Header */
+    header {
+      background: #2e7d32;
+      color: white;
+      padding: 18px 40px;
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header span {
+      font-size: 16px;
+      font-weight: normal;
+      opacity: 0.9;
+    }
+
+    /* Main Layout */
+    .container {
+      padding: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
       border-radius: 15px;
-      width: 350px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      transition: transform 0.2s;
     }
 
-    h2 {
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin-top: 0;
       color: #2e7d32;
       margin-bottom: 20px;
     }
 
-    .section {
-      margin-top: 25px;
-    }
-
+    /* Buttons */
     .btn {
       border: none;
-      padding: 12px 20px;
+      padding: 14px;
       font-size: 16px;
       border-radius: 8px;
       cursor: pointer;
       color: white;
-      margin: 5px;
-      width: 120px;
+      margin: 6px 0;
+      width: 100%;
     }
 
     .green { background: #4CAF50; }
@@ -54,43 +83,59 @@
       opacity: 0.85;
     }
 
-    .remote-grid {
+    /* Remote Grid */
+    .remote {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      justify-items: center;
-      margin-top: 15px;
+      gap: 12px;
+      text-align: center;
     }
 
-    .remote-grid .center {
+    .remote .center {
       grid-column: 2;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 12px;
+      background: #f1f1f1;
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="dashboard">
-    <h2>👩‍💼 Park Owner Dashboard</h2>
+  <!-- HEADER -->
+  <header>
+    👩‍💼 Park Owner Dashboard
+    <span>Smart Park Monitoring System</span>
+  </header>
 
-    <!-- Motor Control -->
-    <div class="section">
-      <h3>💧 Motor Control</h3>
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <!-- MOTOR CONTROL -->
+    <div class="card">
+      <h2>💧 Motor Control</h2>
       <button class="btn green" onclick="motorOn()">Motor ON</button>
       <button class="btn red" onclick="motorOff()">Motor OFF</button>
     </div>
 
-    <!-- Soil Moisture -->
-    <div class="section">
-      <h3>🌱 Soil Moisture</h3>
-      <p><b>Current Level:</b> -- %</p>
+    <!-- SOIL MOISTURE -->
+    <div class="card">
+      <h2>🌱 Soil Moisture Status</h2>
+      <p style="font-size:18px;"><b>Current Level:</b> -- %</p>
+      <p style="color:#777;">(Live sensor data via ESP8266)</p>
     </div>
 
-    <!-- Remote Control -->
-    <div class="section">
-      <h3>🚗 Rover Control</h3>
+    <!-- REMOTE CONTROL -->
+    <div class="card">
+      <h2>🚗 Rover Remote Control</h2>
 
-      <div class="remote-grid">
+      <div class="remote">
         <div></div>
         <button class="btn green center" onclick="forward()">⬆ Forward</button>
         <div></div>
@@ -98,34 +143,3 @@
         <button class="btn orange" onclick="left()">⬅ Left</button>
         <button class="btn red" onclick="stop()">⏹ Stop</button>
         <button class="btn orange" onclick="right()">➡ Right</button>
-
-        <div></div>
-        <button class="btn blue center" onclick="backward()">⬇ Backward</button>
-        <div></div>
-      </div>
-    </div>
-
-    <!-- Feedback -->
-    <div class="section">
-      <h3>📝 Visitor Feedback</h3>
-      <button class="btn gray" onclick="openSheet()">View Feedback Sheet</button>
-    </div>
-  </div>
-
-  <script>
-    function motorOn() { alert("Motor ON"); }
-    function motorOff() { alert("Motor OFF"); }
-
-    function forward() { alert("Moving Forward"); }
-    function backward() { alert("Moving Backward"); }
-    function left() { alert("Turning Left"); }
-    function right() { alert("Turning Right"); }
-    function stop() { alert("Stopped"); }
-
-    function openSheet() {
-      window.open("https://docs.google.com/spreadsheets/d/1Stnsxogc7bmM44QrHw8htkk5ErazZIC1hnjHrzmnaXQ/edit?usp=sharing", "_blank");
-    }
-  </script>
-
-</body>
-</html>
