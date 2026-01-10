@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Visitor Feedback</title>
 
-  <!-- Icons (Font Awesome) -->
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
@@ -16,10 +16,10 @@
     body {
       margin: 0;
       height: 100vh;
-      background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
+      background: linear-gradient(135deg, #74ebd5, #9face6);
       display: flex;
       flex-direction: column;
-      animation: fadeIn 1.2s ease-in;
+      animation: fadeIn 1.2s ease;
     }
 
     @keyframes fadeIn {
@@ -29,31 +29,33 @@
 
     /* Header */
     header {
-      background: #1565c0;
-      color: white;
       padding: 20px 40px;
-      font-size: 24px;
-      font-weight: bold;
+      color: white;
+      font-size: 26px;
+      font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
     }
 
-    /* Main Container */
+    /* Center area */
     .container {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
 
+    /* Glass card */
     .card {
-      background: white;
       width: 100%;
       max-width: 480px;
       padding: 35px;
-      border-radius: 18px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
       animation: slideUp 1s ease;
     }
 
@@ -64,105 +66,10 @@
 
     .card h2 {
       text-align: center;
-      color: #1565c0;
+      color: #1a237e;
       margin-bottom: 25px;
     }
 
     .input-group {
       position: relative;
-      margin-bottom: 18px;
-    }
-
-    .input-group i {
-      position: absolute;
-      top: 50%;
-      left: 12px;
-      transform: translateY(-50%);
-      color: #1565c0;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 14px 14px 14px 38px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-    }
-
-    textarea {
-      resize: none;
-      height: 120px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 12px;
-      background: #2e7d32;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    }
-
-    footer {
-      text-align: center;
-      padding: 12px;
-      background: #f1f1f1;
-      font-size: 14px;
-      color: #555;
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- HEADER -->
-  <header>
-    <i class="fa-solid fa-tree"></i> Park Visitor Feedback
-  </header>
-
-  <!-- MAIN -->
-  <div class="container">
-    <div class="card">
-      <h2><i class="fa-solid fa-comment-dots"></i> Share Your Experience</h2>
-
-      <form onsubmit="sendFeedback(); return false;">
-        <div class="input-group">
-          <i class="fa-solid fa-user"></i>
-          <input type="text" placeholder="Your Name" required>
-        </div>
-
-        <div class="input-group">
-          <i class="fa-solid fa-pen"></i>
-          <textarea placeholder="Describe the issue or feedback" required></textarea>
-        </div>
-
-        <button type="submit">
-          <i class="fa-solid fa-paper-plane"></i> Submit Feedback
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    🌿 Smart Park Management System
-  </footer>
-
-  <!-- SCRIPT -->
-  <script>
-    function sendFeedback() {
-      alert("✅ Feedback sent successfully!");
-      // Google Sheet connection will be added later
-    }
-  </script>
-
-</body>
-</html>
+      margin-bottom: 20p
