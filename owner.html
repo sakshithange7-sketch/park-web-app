@@ -143,3 +143,42 @@
         <button class="btn orange" onclick="left()">⬅ Left</button>
         <button class="btn red" onclick="stop()">⏹ Stop</button>
         <button class="btn orange" onclick="right()">➡ Right</button>
+
+        <div></div>
+        <button class="btn blue center" onclick="backward()">⬇ Backward</button>
+        <div></div>
+      </div>
+    </div>
+
+    <!-- VISITOR FEEDBACK -->
+    <div class="card">
+      <h2>📝 Visitor Feedback</h2>
+      <p>View complaints submitted by park visitors.</p>
+      <button class="btn gray" onclick="openSheet()">View Feedback Sheet</button>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © Smart Park System | IoT + Web Dashboard
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function motorOn() { alert("Motor ON command sent"); }
+    function motorOff() { alert("Motor OFF command sent"); }
+
+    function forward() { alert("Moving Forward"); }
+    function backward() { alert("Moving Backward"); }
+    function left() { alert("Turning Left"); }
+    function right() { alert("Turning Right"); }
+    function stop() { alert("Stopped"); }
+
+    function openSheet() {
+      window.open("https://docs.google.com/spreadsheets/d/1Stnsxogc7bmM44QrHw8htkk5ErazZIC1hnjHrzmnaXQ/edit?usp=sharing", "_blank");
+    }
+  </script>
+
+</body>
+</html>
