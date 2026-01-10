@@ -1,184 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Park Owner Dashboard</title>
+<title>Park Owner – Rover Control</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    background: linear-gradient(to right, #2ecc71, #27ae60);
+    text-align: center;
+    color: white;
+}
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(120deg, #e0f7fa, #e8f5e9);
-    }
+h1 {
+    margin-top: 20px;
+}
 
-    /* Header */
-    header {
-      background: #2e7d32;
-      color: white;
-      padding: 18px 40px;
-      font-size: 24px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.control-box {
+    margin-top: 30px;
+}
 
-    header span {
-      font-size: 16px;
-      font-weight: normal;
-      opacity: 0.9;
-    }
+button {
+    width: 120px;
+    height: 60px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
 
-    /* Main Layout */
-    .container {
-      padding: 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-    }
+.move { background: #2980b9; color: white; }
+.stop { background: #c0392b; color: white; }
+.fan { background: #f39c12; color: white; }
 
-    /* Cards */
-    .card {
-      background: white;
-      border-radius: 15px;
-      padding: 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      color: #2e7d32;
-      margin-bottom: 20px;
-    }
-
-    /* Buttons */
-    .btn {
-      border: none;
-      padding: 14px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      color: white;
-      margin: 6px 0;
-      width: 100%;
-    }
-
-    .green { background: #4CAF50; }
-    .red { background: #f44336; }
-    .blue { background: #2196F3; }
-    .orange { background: #ff9800; }
-    .gray { background: #607d8b; }
-
-    .btn:hover {
-      opacity: 0.85;
-    }
-
-    /* Remote Grid */
-    .remote {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
-      text-align: center;
-    }
-
-    .remote .center {
-      grid-column: 2;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 12px;
-      background: #f1f1f1;
-      font-size: 14px;
-      color: #555;
-    }
-  </style>
+button:active {
+    transform: scale(0.95);
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    👩‍💼 Park Owner Dashboard
-    <span>Smart Park Monitoring System</span>
-  </header>
+<h1>🚜 Park Rover Control</h1>
 
-  <!-- MAIN CONTENT -->
-  <div class="container">
+<div class="control-box">
+    <button class="move" onclick="send('F')">⬆ Forward</button><br>
 
-    <!-- MOTOR CONTROL -->
-    <div class="card">
-      <h2>💧 Motor Control</h2>
-      <button class="btn green" onclick="motorOn()">Motor ON</button>
-      <button class="btn red" onclick="motorOff()">Motor OFF</button>
-    </div>
+    <button class="move" onclick="send('L')">⬅ Left</button>
+    <button class="stop" onclick="send('S')">⛔ Stop</button>
+    <button class="move" onclick="send('R')">➡ Right</button><br>
 
-    <!-- SOIL MOISTURE -->
-    <div class="card">
-      <h2>🌱 Soil Moisture Status</h2>
-      <p style="font-size:18px;"><b>Current Level:</b> -- %</p>
-      <p style="color:#777;">(Live sensor data via ESP8266)</p>
-    </div>
+    <button class="move" onclick="send('B')">⬇ Backward</button>
+</div>
 
-    <!-- REMOTE CONTROL -->
-    <div class="card">
-      <h2>🚗 Rover Remote Control</h2>
+<h2>💨 Irrigation Fan / Pump</h2>
+<button class="fan" onclick="send('1')">ON</button>
+<button class="fan" onclick="send('0')">OFF</button>
 
-      <div class="remote">
-        <div></div>
-        <button class="btn green center" onclick="forward()">⬆ Forward</button>
-        <div></div>
-
-        <button class="btn orange" onclick="left()">⬅ Left</button>
-        <button class="btn red" onclick="stop()">⏹ Stop</button>
-        <button class="btn orange" onclick="right()">➡ Right</button>
-
-        <div></div>
-        <button class="btn blue center" onclick="backward()">⬇ Backward</button>
-        <div></div>
-      </div>
-    </div>
-
-    <!-- VISITOR FEEDBACK -->
-    <div class="card">
-      <h2>📝 Visitor Feedback</h2>
-      <p>View complaints submitted by park visitors.</p>
-      <button class="btn gray" onclick="openSheet()">View Feedback Sheet</button>
-    </div>
-
-  </div>
-
-  <!-- FOOTER -->
-  <footer>
-    © Smart Park System | IoT + Web Dashboard
-  </footer>
-
-  <!-- SCRIPT -->
-  <script>
-    function motorOn() { alert("Motor ON command sent"); }
-    function motorOff() { alert("Motor OFF command sent"); }
-
-    function forward() { alert("Moving Forward"); }
-    function backward() { alert("Moving Backward"); }
-    function left() { alert("Turning Left"); }
-    function right() { alert("Turning Right"); }
-    function stop() { alert("Stopped"); }
-
-    function openSheet() {
-      window.open("https://docs.google.com/spreadsheets/d/1Stnsxogc7bmM44QrHw8htkk5ErazZIC1hnjHrzmnaXQ/edit?usp=sharing", "_blank");
-    }
-  </script>
+<script>
+function send(cmd) {
+    fetch("http://192.168.4.1/" + cmd)
+    .then(() => console.log("Sent:", cmd))
+    .catch(() => alert("ESP8266 not connected"));
+}
+</script>
 
 </body>
 </html>
