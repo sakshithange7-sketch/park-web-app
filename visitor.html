@@ -107,4 +107,62 @@
     }
 
     button:hover {
-      transform: translate
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 12px;
+      background: #f1f1f1;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <i class="fa-solid fa-tree"></i> Park Visitor Feedback
+  </header>
+
+  <!-- MAIN -->
+  <div class="container">
+    <div class="card">
+      <h2><i class="fa-solid fa-comment-dots"></i> Share Your Experience</h2>
+
+      <form onsubmit="sendFeedback(); return false;">
+        <div class="input-group">
+          <i class="fa-solid fa-user"></i>
+          <input type="text" placeholder="Your Name" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fa-solid fa-pen"></i>
+          <textarea placeholder="Describe the issue or feedback" required></textarea>
+        </div>
+
+        <button type="submit">
+          <i class="fa-solid fa-paper-plane"></i> Submit Feedback
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    🌿 Smart Park Management System
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function sendFeedback() {
+      alert("✅ Feedback sent successfully!");
+      // Google Sheet connection will be added later
+    }
+  </script>
+
+</body>
+</html>
