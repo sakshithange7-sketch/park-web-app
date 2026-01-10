@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Park Owner Dashboard</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial;
-    background: linear-gradient(to right, #145A32, #27AE60);
+    background: linear-gradient(to right, #0f3d2e, #145a32);
     color: white;
 }
 
 .header {
-    background: #0B3D2E;
+    background: #0b3d2e;
     padding: 15px;
     font-size: 22px;
     display: flex;
@@ -22,7 +23,7 @@ body {
 .container {
     display: flex;
     justify-content: space-around;
-    margin-top: 30px;
+    margin: 30px;
 }
 
 .card {
@@ -36,5 +37,84 @@ body {
 button {
     width: 140px;
     height: 45px;
-    font-size: 16px;
     border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    margin: 8px;
+    cursor: pointer;
+}
+
+.green { background: #27ae60; }
+.red { background: #c0392b; }
+.blue { background: #2980b9; }
+.orange { background: #f39c12; }
+
+button:active {
+    transform: scale(0.95);
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div>👨‍💼 Park Owner Dashboard</div>
+  <div>Smart Park Monitoring System</div>
+</div>
+
+<div class="container">
+
+<div class="card">
+    <h3>Motor Control</h3>
+    <button class="green" onclick="motorOn()">Motor ON</button>
+    <button class="red" onclick="motorOff()">Motor OFF</button>
+</div>
+
+<div class="card">
+    <h3>Soil Moisture Status</h3>
+    <p>Current Level:</p>
+    <h2 id="moisture">-- %</h2>
+</div>
+
+<div class="card">
+    <h3>Rover Remote Control</h3>
+    <button class="green" onclick="moveForward()">⬆ Forward</button><br>
+    <button class="orange" onclick="moveLeft()">⬅ Left</button>
+    <button class="red" onclick="stopRover()">⛔ Stop</button>
+    <button class="orange" onclick="moveRight()">➡ Right</button><br>
+    <button class="green" onclick="moveBackward()">⬇ Backward</button>
+</div>
+
+<div class="card">
+    <h3>Visitor Feedback</h3>
+    <p>View complaints submitted by park visitors</p>
+    <a href="https://docs.google.com/spreadsheets/" target="_blank">
+        <button class="blue">View Feedback Sheet</button>
+    </a>
+</div>
+
+</div>
+
+<script>
+const espIP = "http://192.168.4.1";   // ESP8266 IP
+
+function send(cmd) {
+    fetch(espIP + "/" + cmd)
+      .then(() => console.log("Sent:", cmd))
+      .catch(() => alert("ESP8266 not connected"));
+}
+
+// Rover movement
+function moveForward()  { send('F'); }
+function moveBackward() { send('B'); }
+function moveLeft()     { send('L'); }
+function moveRight()    { send('R'); }
+function stopRover()    { send('S'); }
+
+// Motor / Pump
+function motorOn()  { send('1'); }
+function motorOff() { send('0'); }
+</script>
+
+</body>
+</html>
