@@ -5,71 +5,65 @@
 
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #eaf7ec;
+      background: linear-gradient(135deg, #d4fc79, #96e6a1);
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
     }
 
     .dashboard {
       background: #ffffff;
-      width: 420px;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-
-    h1 {
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
       text-align: center;
-      color: #2e7d32;
-      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
     h2 {
-      color: #333;
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    .section {
       margin-top: 25px;
-      margin-bottom: 10px;
     }
 
-    .btn-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    button {
-      flex: 1;
-      padding: 12px;
-      font-size: 15px;
+    .btn {
       border: none;
-      border-radius: 6px;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
       cursor: pointer;
       color: white;
+      margin: 5px;
+      width: 120px;
     }
 
     .green { background: #4CAF50; }
-    .red { background: #F44336; }
+    .red { background: #f44336; }
     .blue { background: #2196F3; }
+    .orange { background: #ff9800; }
+    .gray { background: #607d8b; }
 
-    .remote {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 10px;
+    .btn:hover {
+      opacity: 0.85;
     }
 
-    .feedback-btn {
-      width: 100%;
-      margin-top: 10px;
-      background: #2196F3;
+    .remote-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      justify-items: center;
+      margin-top: 15px;
     }
 
-    .info {
-      color: #1565c0;
-      font-weight: bold;
+    .remote-grid .center {
+      grid-column: 2;
     }
   </style>
 </head>
@@ -77,51 +71,59 @@
 <body>
 
   <div class="dashboard">
-    <h1>👩‍🌾 Park Owner Dashboard</h1>
+    <h2>👩‍💼 Park Owner Dashboard</h2>
 
-    <!-- MOTOR CONTROL -->
-    <h2>⚙️ Motor Control</h2>
-    <div class="btn-row">
-      <button class="green" onclick="motorOn()">Motor ON</button>
-      <button class="red" onclick="motorOff()">Motor OFF</button>
+    <!-- Motor Control -->
+    <div class="section">
+      <h3>💧 Motor Control</h3>
+      <button class="btn green" onclick="motorOn()">Motor ON</button>
+      <button class="btn red" onclick="motorOff()">Motor OFF</button>
     </div>
 
-    <!-- SOIL MOISTURE -->
-    <h2>💧 Soil Moisture</h2>
-    <p class="info">Current Level: -- %</p>
-
-    <!-- REMOTE CONTROL -->
-    <h2>🚗 Remote Control</h2>
-    <div class="remote">
-      <button class="green" onclick="sendCommand('FORWARD')">⬆ Forward</button>
-      <button class="red" onclick="sendCommand('STOP')">⏹ Stop</button>
-      <button class="blue" onclick="sendCommand('BACKWARD')">⬇ Backward</button>
+    <!-- Soil Moisture -->
+    <div class="section">
+      <h3>🌱 Soil Moisture</h3>
+      <p><b>Current Level:</b> -- %</p>
     </div>
 
-    <!-- VISITOR FEEDBACK -->
-    <h2>📝 Visitor Feedback</h2>
-    <p>Check complaints submitted by visitors:</p>
-    <button class="feedback-btn" onclick="openSheet()">📊 View Feedback Sheet</button>
+    <!-- Remote Control -->
+    <div class="section">
+      <h3>🚗 Rover Control</h3>
+
+      <div class="remote-grid">
+        <div></div>
+        <button class="btn green center" onclick="forward()">⬆ Forward</button>
+        <div></div>
+
+        <button class="btn orange" onclick="left()">⬅ Left</button>
+        <button class="btn red" onclick="stop()">⏹ Stop</button>
+        <button class="btn orange" onclick="right()">➡ Right</button>
+
+        <div></div>
+        <button class="btn blue center" onclick="backward()">⬇ Backward</button>
+        <div></div>
+      </div>
+    </div>
+
+    <!-- Feedback -->
+    <div class="section">
+      <h3>📝 Visitor Feedback</h3>
+      <button class="btn gray" onclick="openSheet()">View Feedback Sheet</button>
+    </div>
   </div>
 
   <script>
-    function motorOn() {
-      alert("Motor ON command sent");
-    }
+    function motorOn() { alert("Motor ON"); }
+    function motorOff() { alert("Motor OFF"); }
 
-    function motorOff() {
-      alert("Motor OFF command sent");
-    }
-
-    function sendCommand(cmd) {
-      alert("Remote Command: " + cmd);
-    }
+    function forward() { alert("Moving Forward"); }
+    function backward() { alert("Moving Backward"); }
+    function left() { alert("Turning Left"); }
+    function right() { alert("Turning Right"); }
+    function stop() { alert("Stopped"); }
 
     function openSheet() {
-      window.open(
-        "https://docs.google.com/spreadsheets/d/1Stnsxogc7bmM44QrHw8htkk5ErazZIC1hnjHrzmnaXQ/edit?usp=sharing",
-        "_blank"
-      );
+      window.open("PASTE_GOOGLE_SHEET_LINK_HERE", "_blank");
     }
   </script>
 
