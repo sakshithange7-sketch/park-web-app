@@ -1,119 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Park Owner Dashboard</title>
+  <meta charset="UTF-8">
+  <title>Park Owner Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: linear-gradient(to right, #0f3d2e, #145a32);
-    color: white;
-}
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-.header {
-    background: #0b3d2e;
-    padding: 15px;
-    font-size: 22px;
-    display: flex;
-    justify-content: space-between;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-.container {
-    display: flex;
-    justify-content: space-around;
-    margin: 30px;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #11998e, #38ef7d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.card {
-    background: rgba(255,255,255,0.12);
-    padding: 20px;
-    border-radius: 15px;
-    width: 22%;
-    text-align: center;
-}
+    .dashboard {
+      width: 95%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(15px);
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      color: white;
+      animation: fadeIn 0.6s ease;
+    }
 
-button {
-    width: 140px;
-    height: 45px;
-    border: none;
-    border-radius: 8px;
-    font-size: 15px;
-    margin: 8px;
-    cursor: pointer;
-}
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-.green { background: #27ae60; }
-.red { background: #c0392b; }
-.blue { background: #2980b9; }
-.orange { background: #f39c12; }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
 
-button:active {
-    transform: scale(0.95);
-}
-</style>
+    h1 i {
+      color: #ffeb3b;
+      margin-right: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.2);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .card h2 {
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .card h2 i {
+      margin-right: 6px;
+      color: #ffd54f;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .green { background: #2ecc71; color: white; }
+    .red { background: #e74c3c; color: white; }
+    .blue { background: #3498db; color: white; }
+    .orange { background: #f39c12; color: white; }
+
+    .soil {
+      font-size: 18px;
+      font-weight: bold;
+      color: #00e5ff;
+    }
+
+    .remote button {
+      font-size: 16px;
+    }
+
+  </style>
 </head>
 
 <body>
 
-<div class="header">
-  <div>👨‍💼 Park Owner Dashboard</div>
-  <div>Smart Park Monitoring System</div>
-</div>
+<div class="dashboard">
+  <h1><i class="fas fa-user-tie"></i> Park Owner Dashboard</h1>
 
-<div class="container">
+  <div class="grid">
 
-<div class="card">
-    <h3>Motor Control</h3>
-    <button class="green" onclick="motorOn()">Motor ON</button>
-    <button class="red" onclick="motorOff()">Motor OFF</button>
-</div>
+    <!-- Motor Control -->
+    <div class="card">
+      <h2><i class="fas fa-fan"></i> Motor Control</h2>
+      <button class="green" onclick="sendCmd('motor_on')">
+        <i class="fas fa-power-off"></i> Motor ON
+      </button>
+      <button class="red" onclick="sendCmd('motor_off')">
+        <i class="fas fa-stop-circle"></i> Motor OFF
+      </button>
+    </div>
 
-<div class="card">
-    <h3>Soil Moisture Status</h3>
-    <p>Current Level:</p>
-    <h2 id="moisture">-- %</h2>
-</div>
+    <!-- Soil Moisture -->
+    <div class="card">
+      <h2><i class="fas fa-droplet"></i> Soil Moisture</h2>
+      <p class="soil">
+        Current Level: <span id="soil">--%</span>
+      </p>
+      <button class="blue" onclick="getSoil()">
+        <i class="fas fa-rotate"></i> Refresh
+      </button>
+    </div>
 
-<div class="card">
-    <h3>Rover Remote Control</h3>
-    <button class="green" onclick="moveForward()">⬆ Forward</button><br>
-    <button class="orange" onclick="moveLeft()">⬅ Left</button>
-    <button class="red" onclick="stopRover()">⛔ Stop</button>
-    <button class="orange" onclick="moveRight()">➡ Right</button><br>
-    <button class="green" onclick="moveBackward()">⬇ Backward</button>
-</div>
+    <!-- Remote Control -->
+    <div class="card remote">
+      <h2><i class="fas fa-car"></i> Remote Control</h2>
+      <button class="green" onclick="sendCmd('forward')">⬆ Forward</button>
+      <button class="orange" onclick="sendCmd('left')">⬅ Left</button>
+      <button class="red" onclick="sendCmd('stop')">⏹ Stop</button>
+      <button class="orange" onclick="sendCmd('right')">➡ Right</button>
+      <button class="blue" onclick="sendCmd('backward')">⬇ Backward</button>
+    </div>
 
-<div class="card">
-    <h3>Visitor Feedback</h3>
-    <p>View complaints submitted by park visitors</p>
-    <a href="https://docs.google.com/spreadsheets/d/1Stnsxogc7bmM44QrHw8htkk5ErazZIC1hnjHrzmnaXQ/edit?usp=sharing/" target="_blank">
-        <button class="blue">View Feedback Sheet</button>
-    </a>
-</div>
+    <!-- Visitor Feedback -->
+    <div class="card">
+      <h2><i class="fas fa-comments"></i> Visitor Feedback</h2>
+      <p>View complaints submitted by visitors</p>
+      <a href="https://docs.google.com/spreadsheets/d/1Stnsxogc7bmM44QrHw8htkk5ErazZIC1hnjHrzmnaXQ/edit?usp=sharing="_blank">
+        <button class="blue">
+          <i class="fas fa-table"></i> Open Feedback Sheet
+        </button>
+      </a>
+    </div>
 
+  </div>
 </div>
 
 <script>
-const espIP = "http://192.168.4.1";   // ESP8266 IP
+  // 🔴 Replace ESP_IP with your ESP8266 IP
+  const ESP_IP = "http://192.168.1.100";
 
-function send(cmd) {
-    fetch(espIP + "/" + cmd)
-      .then(() => console.log("Sent:", cmd))
-      .catch(() => alert("ESP8266 not connected"));
-}
+  function sendCmd(cmd) {
+    fetch(`${ESP_IP}/${cmd}`).catch(() => alert("ESP not reachable"));
+  }
 
-// Rover movement
-function moveForward()  { send('F'); }
-function moveBackward() { send('B'); }
-function moveLeft()     { send('L'); }
-function moveRight()    { send('R'); }
-function stopRover()    { send('S'); }
-
-// Motor / Pump
-function motorOn()  { send('1'); }
-function motorOff() { send('0'); }
+  function getSoil() {
+    fetch(`${ESP_IP}/soil`)
+      .then(res => res.text())
+      .then(val => document.getElementById("soil").innerText = val + "%")
+      .catch(() => alert("ESP not reachable"));
+  }
 </script>
 
 </body>
